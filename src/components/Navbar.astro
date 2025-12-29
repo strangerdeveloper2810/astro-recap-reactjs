@@ -2,20 +2,23 @@
 const currentPath = Astro.url.pathname;
 ---
 
-<nav class="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
+<nav class="sticky top-0 z-50 bg-white/70 dark:bg-[rgb(var(--color-dark-bg))]/80 backdrop-blur-xl border-b border-[rgb(var(--color-border))] dark:border-[rgb(var(--color-dark-border))]">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-16">
+    <div class="flex items-center justify-between h-20">
       <!-- Logo -->
-      <a href="/" class="flex items-center space-x-2 touch-target">
-        <span class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-          📚 Recap JS
+      <a href="/" class="flex items-center space-x-3 touch-target group">
+        <div class="relative">
+          <span class="text-3xl transform group-hover:scale-110 transition-transform duration-200">📚</span>
+        </div>
+        <span class="text-2xl font-serif font-semibold text-[rgb(var(--color-text))] dark:text-[rgb(var(--color-dark-text))] tracking-tight">
+          Recap JS
         </span>
       </a>
 
       <!-- Mobile menu button -->
       <button
         id="mobile-menu-button"
-        class="lg:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 touch-target"
+        class="lg:hidden p-3 rounded-lg hover:bg-[rgb(var(--color-bg-secondary))] dark:hover:bg-[rgb(var(--color-dark-bg-secondary))] touch-target transition-colors"
         aria-label="Toggle menu"
       >
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -24,33 +27,33 @@ const currentPath = Astro.url.pathname;
       </button>
 
       <!-- Desktop nav -->
-      <div class="hidden lg:flex items-center space-x-1">
+      <div class="hidden lg:flex items-center space-x-2">
         <a
           href="/"
-          class={`px-4 py-2 rounded-lg touch-target ${
-            currentPath === '/' 
-              ? 'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300' 
-              : 'hover:bg-gray-100 dark:hover:bg-gray-800'
+          class={`px-5 py-2.5 rounded-lg touch-target font-medium transition-all duration-200 ${
+            currentPath === '/'
+              ? 'bg-[rgb(var(--color-primary))] text-white shadow-sm'
+              : 'text-[rgb(var(--color-text-muted))] dark:text-[rgb(var(--color-dark-text-muted))] hover:bg-[rgb(var(--color-bg-secondary))] dark:hover:bg-[rgb(var(--color-dark-bg-secondary))] hover:text-[rgb(var(--color-text))] dark:hover:text-[rgb(var(--color-dark-text))]]'
           }`}
         >
           Trang chủ
         </a>
         <a
           href="/interview-prep"
-          class={`px-4 py-2 rounded-lg touch-target ${
-            currentPath.startsWith('/interview-prep') 
-              ? 'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300' 
-              : 'hover:bg-gray-100 dark:hover:bg-gray-800'
+          class={`px-5 py-2.5 rounded-lg touch-target font-medium transition-all duration-200 ${
+            currentPath.startsWith('/interview-prep')
+              ? 'bg-[rgb(var(--color-primary))] text-white shadow-sm'
+              : 'text-[rgb(var(--color-text-muted))] dark:text-[rgb(var(--color-dark-text-muted))] hover:bg-[rgb(var(--color-bg-secondary))] dark:hover:bg-[rgb(var(--color-dark-bg-secondary))] hover:text-[rgb(var(--color-text))] dark:hover:text-[rgb(var(--color-dark-text))]]'
           }`}
         >
           Phỏng vấn
         </a>
         <a
           href="/javascript-fundamentals"
-          class={`px-4 py-2 rounded-lg touch-target ${
-            currentPath.startsWith('/javascript-fundamentals') 
-              ? 'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300' 
-              : 'hover:bg-gray-100 dark:hover:bg-gray-800'
+          class={`px-5 py-2.5 rounded-lg touch-target font-medium transition-all duration-200 ${
+            currentPath.startsWith('/javascript-fundamentals')
+              ? 'bg-[rgb(var(--color-primary))] text-white shadow-sm'
+              : 'text-[rgb(var(--color-text-muted))] dark:text-[rgb(var(--color-dark-text-muted))] hover:bg-[rgb(var(--color-bg-secondary))] dark:hover:bg-[rgb(var(--color-dark-bg-secondary))] hover:text-[rgb(var(--color-text))] dark:hover:text-[rgb(var(--color-dark-text))]]'
           }`}
         >
           JavaScript
@@ -60,13 +63,13 @@ const currentPath = Astro.url.pathname;
       <!-- Dark mode toggle -->
       <button
         id="dark-mode-toggle"
-        class="ml-4 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 touch-target"
+        class="ml-4 p-3 rounded-lg hover:bg-[rgb(var(--color-bg-secondary))] dark:hover:bg-[rgb(var(--color-dark-bg-secondary))] touch-target transition-all duration-200 group"
         aria-label="Toggle dark mode"
       >
-        <svg id="sun-icon" class="w-5 h-5 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+        <svg id="sun-icon" class="w-5 h-5 hidden dark:block group-hover:rotate-45 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
           <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
         </svg>
-        <svg id="moon-icon" class="w-5 h-5 block dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+        <svg id="moon-icon" class="w-5 h-5 block dark:hidden group-hover:-rotate-12 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
           <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
         </svg>
       </button>
@@ -74,34 +77,34 @@ const currentPath = Astro.url.pathname;
   </div>
 
   <!-- Mobile menu -->
-  <div id="mobile-menu" class="hidden lg:hidden border-t border-gray-200 dark:border-gray-800">
+  <div id="mobile-menu" class="hidden lg:hidden border-t border-[rgb(var(--color-border))] dark:border-[rgb(var(--color-dark-border))] bg-white/90 dark:bg-[rgb(var(--color-dark-bg))]/90 backdrop-blur-lg">
     <div class="px-4 py-4 space-y-2">
       <a
         href="/"
-        class={`block px-4 py-3 rounded-lg touch-target ${
-          currentPath === '/' 
-            ? 'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300' 
-            : 'hover:bg-gray-100 dark:hover:bg-gray-800'
+        class={`block px-5 py-3 rounded-lg touch-target font-medium transition-all duration-200 ${
+          currentPath === '/'
+            ? 'bg-[rgb(var(--color-primary))] text-white shadow-sm'
+            : 'text-[rgb(var(--color-text-muted))] dark:text-[rgb(var(--color-dark-text-muted))] hover:bg-[rgb(var(--color-bg-secondary))] dark:hover:bg-[rgb(var(--color-dark-bg-secondary))]'
         }`}
       >
         Trang chủ
       </a>
       <a
         href="/interview-prep"
-        class={`block px-4 py-3 rounded-lg touch-target ${
-          currentPath.startsWith('/interview-prep') 
-            ? 'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300' 
-            : 'hover:bg-gray-100 dark:hover:bg-gray-800'
+        class={`block px-5 py-3 rounded-lg touch-target font-medium transition-all duration-200 ${
+          currentPath.startsWith('/interview-prep')
+            ? 'bg-[rgb(var(--color-primary))] text-white shadow-sm'
+            : 'text-[rgb(var(--color-text-muted))] dark:text-[rgb(var(--color-dark-text-muted))] hover:bg-[rgb(var(--color-bg-secondary))] dark:hover:bg-[rgb(var(--color-dark-bg-secondary))]'
         }`}
       >
         Phỏng vấn
       </a>
       <a
         href="/javascript-fundamentals"
-        class={`block px-4 py-3 rounded-lg touch-target ${
-          currentPath.startsWith('/javascript-fundamentals') 
-            ? 'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300' 
-            : 'hover:bg-gray-100 dark:hover:bg-gray-800'
+        class={`block px-5 py-3 rounded-lg touch-target font-medium transition-all duration-200 ${
+          currentPath.startsWith('/javascript-fundamentals')
+            ? 'bg-[rgb(var(--color-primary))] text-white shadow-sm'
+            : 'text-[rgb(var(--color-text-muted))] dark:text-[rgb(var(--color-dark-text-muted))] hover:bg-[rgb(var(--color-bg-secondary))] dark:hover:bg-[rgb(var(--color-dark-bg-secondary))]'
         }`}
       >
         JavaScript
@@ -114,7 +117,7 @@ const currentPath = Astro.url.pathname;
   // Mobile menu toggle
   const mobileMenuButton = document.getElementById('mobile-menu-button');
   const mobileMenu = document.getElementById('mobile-menu');
-  
+
   mobileMenuButton?.addEventListener('click', () => {
     mobileMenu?.classList.toggle('hidden');
   });
@@ -126,4 +129,3 @@ const currentPath = Astro.url.pathname;
     localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
   });
 </script>
-
