@@ -1,0 +1,46 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import { getMarkdownFiles } from '../../utils/getMarkdownFiles';
+import path from 'path';
+
+// Get base directory
+const getBaseDir = () => {
+  const currentFileUrl = import.meta.url;
+  const currentFilePath = new URL(currentFileUrl).pathname;
+  const astroSiteDir = path.dirname(currentFilePath).replace('/src/pages/javascript-fundamentals', '');
+  return path.join(astroSiteDir, '..');
+};
+
+const basePath = path.join(getBaseDir(), 'javascript-fundamentals');
+const files = getMarkdownFiles(basePath).sort((a, b) => {
+  const numA = parseInt(a.slug.match(/^\d+/)?.[0] || '999');
+  const numB = parseInt(b.slug.match(/^\d+/)?.[0] || '999');
+  return numA - numB;
+});
+---
+
+<MainLayout title="JavaScript Fundamentals">
+  <Navbar />
+  
+  <main class="min-h-screen py-12 px-4">
+    <div class="max-w-6xl mx-auto">
+      <h1 class="text-4xl font-bold mb-8 text-center">📘 JavaScript Fundamentals</h1>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {files.map((file) => (
+          <a
+            href={`/javascript-fundamentals/${file.slug}`}
+            class="block p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all touch-target border-l-4 border-blue-600"
+          >
+            <h2 class="text-xl font-bold mb-2">{file.title}</h2>
+            <p class="text-gray-600 dark:text-gray-400 text-sm">
+              {file.slug}
+            </p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </main>
+</MainLayout>
+

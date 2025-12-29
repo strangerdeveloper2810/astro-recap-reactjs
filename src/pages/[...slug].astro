@@ -1,0 +1,179 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Sidebar from '../components/Sidebar.astro';
+import { getMarkdownFiles, getMarkdownFile } from '../utils/getMarkdownFiles';
+import { marked } from 'marked';
+import path from 'path';
+
+export async function getStaticPaths() {
+  // Read from src/markdown-content
+  const contentDir = path.join(process.cwd(), 'src', 'markdown-content');
+
+  const paths: Array<{ params: { slug: string } }> = [];
+
+  // Get all files from interview-prep
+  const interviewPrepPath = path.join(contentDir, 'interview-prep');
+  const interviewPrepFiles = getMarkdownFiles(interviewPrepPath);
+  for (const file of interviewPrepFiles) {
+    paths.push({
+      params: { slug: `interview-prep/${file.slug}` }
+    });
+  }
+
+  // Get all files from javascript-fundamentals
+  const jsFundamentalsPath = path.join(contentDir, 'javascript-fundamentals');
+  const jsFundamentalsFiles = getMarkdownFiles(jsFundamentalsPath);
+  for (const file of jsFundamentalsFiles) {
+    paths.push({
+      params: { slug: `javascript-fundamentals/${file.slug}` }
+    });
+  }
+
+  return paths;
+}
+
+const fullSlug = Astro.params.slug || '';
+const currentPath = Astro.url.pathname;
+
+// Determine which folder to read from and extract relative slug
+let basePath = '';
+let slug = '';
+let sidebarItems: Array<{ title: string; href: string; children?: Array<{ title: string; href: string }> }> = [];
+
+// Get markdown content directory
+const contentDir = path.join(process.cwd(), 'src', 'markdown-content');
+
+if (currentPath.startsWith('/interview-prep')) {
+  basePath = path.join(contentDir, 'interview-prep');
+  // Remove 'interview-prep/' prefix from slug
+  slug = fullSlug.replace(/^interview-prep\//, '');
+  
+  // Get all markdown files for sidebar
+  const allFiles = getMarkdownFiles(basePath);
+  
+  // Organize sidebar
+  const quickRef = allFiles.filter(f => f.slug.includes('quick-reference'));
+  const detailed = allFiles.filter(f => f.slug.includes('detailed-questions'));
+  
+  sidebarItems = [
+    {
+      title: 'Quick Reference',
+      href: '/interview-prep/quick-reference',
+      children: quickRef.map(f => ({
+        title: f.title,
+        href: `/interview-prep/${f.slug}`,
+      })),
+    },
+    {
+      title: 'Detailed Questions',
+      href: '/interview-prep/detailed-questions',
+      children: detailed.map(f => ({
+        title: f.title,
+        href: `/interview-prep/${f.slug}`,
+      })),
+    },
+  ];
+} else if (currentPath.startsWith('/javascript-fundamentals')) {
+  basePath = path.join(contentDir, 'javascript-fundamentals');
+  // Remove 'javascript-fundamentals/' prefix from slug
+  slug = fullSlug.replace(/^javascript-fundamentals\//, '');
+  
+  const allFiles = getMarkdownFiles(basePath);
+  sidebarItems = allFiles.map(f => ({
+    title: f.title,
+    href: `/javascript-fundamentals/${f.slug}`,
+  }));
+}
+
+// Get the specific file
+// slug format: "quick-reference/phong-van-nhanh" or "detailed-questions/interview-questions-react-lead/00-react-fundamentals"
+let file = getMarkdownFile(basePath, slug);
+
+// If not found, search in all files
+if (!file) {
+  const allFiles = getMarkdownFiles(basePath);
+  // Try exact match first
+  file = allFiles.find(f => f.slug === slug) || null;
+  
+  // Try case-insensitive match
+  if (!file) {
+    file = allFiles.find(f => 
+      f.slug.toLowerCase() === slug.toLowerCase() ||
+      f.slug.toLowerCase().endsWith('/' + slug.toLowerCase())
+    ) || null;
+  }
+  
+  // Try partial match (for nested paths)
+  if (!file) {
+    const slugParts = slug.split('/');
+    file = allFiles.find(f => {
+      const fileParts = f.slug.split('/');
+      return fileParts.slice(-slugParts.length).join('/') === slugParts.join('/');
+    }) || null;
+  }
+}
+
+if (!file) {
+  return Astro.redirect('/404');
+}
+
+// Configure marked
+marked.setOptions({
+  breaks: true,
+  gfm: true,
+});
+
+// Process markdown with Mermaid support
+let html = marked(file.content);
+
+// Replace Mermaid code blocks
+html = html.replace(
+  /```mermaid\n([\s\S]*?)```/g,
+  (match, diagram) => {
+    const id = `mermaid-${Math.random().toString(36).substr(2, 9)}`;
+    return `<div class="mermaid" id="${id}">${diagram.trim()}</div>`;
+  }
+);
+
+const title = file.title;
+---
+
+<MainLayout title={title}>
+  <Navbar />
+  
+  <div class="flex">
+    <Sidebar items={sidebarItems} currentPath={currentPath} />
+    
+    <main class="flex-1 min-h-screen">
+      <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <header class="mb-8">
+          <h1 class="text-4xl font-bold mb-4">{title}</h1>
+        </header>
+        
+        <div 
+          class="prose prose-lg dark:prose-invert max-w-none prose-headings:scroll-mt-20 prose-pre:bg-gray-900 prose-code:text-sm"
+          set:html={html}
+        />
+      </article>
+    </main>
+  </div>
+
+  <script is:inline>
+    // Load and initialize Mermaid
+    (function() {
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js';
+      script.onload = function() {
+        mermaid.initialize({ 
+          startOnLoad: true,
+          theme: document.documentElement.classList.contains('dark') ? 'dark' : 'default',
+          securityLevel: 'loose',
+        });
+        mermaid.run();
+      };
+      document.head.appendChild(script);
+    })();
+  </script>
+</MainLayout>
+

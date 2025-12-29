@@ -1,0 +1,124 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Navbar from '../components/Navbar.astro';
+---
+
+<MainLayout title="Recap JS - Tài liệu ôn tập React Lead/Senior">
+  <Navbar />
+  
+  <main class="min-h-screen">
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-900 dark:to-gray-800 py-16 px-4">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+          📚 Recap JS
+        </h1>
+        <p class="text-xl sm:text-2xl text-gray-600 dark:text-gray-300 mb-8">
+          Tài liệu ôn tập toàn diện cho vị trí <strong>React Lead/Senior</strong>
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="/interview-prep"
+            class="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold touch-target text-center shadow-lg hover:shadow-xl transition-all"
+          >
+            🎯 Bắt đầu ôn tập
+          </a>
+          <a
+            href="/javascript-fundamentals"
+            class="px-8 py-4 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-lg font-semibold touch-target text-center border-2 border-gray-200 dark:border-gray-700"
+          >
+            📖 JavaScript Fundamentals
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16 px-4">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-3xl font-bold text-center mb-12">Nội dung chính</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+            <div class="text-4xl mb-4">⚛️</div>
+            <h3 class="text-xl font-bold mb-2">React Core</h3>
+            <p class="text-gray-600 dark:text-gray-400">
+              Hooks, Virtual DOM, Reconciliation, Fiber Architecture
+            </p>
+          </div>
+          
+          <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+            <div class="text-4xl mb-4">🔄</div>
+            <h3 class="text-xl font-bold mb-2">State Management</h3>
+            <p class="text-gray-600 dark:text-gray-400">
+              Redux, Zustand, Jotai, Recoil với diagrams chi tiết
+            </p>
+          </div>
+          
+          <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+            <div class="text-4xl mb-4">⚡</div>
+            <h3 class="text-xl font-bold mb-2">Performance</h3>
+            <p class="text-gray-600 dark:text-gray-400">
+              Optimization, Code Splitting, Virtual Scrolling
+            </p>
+          </div>
+          
+          <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+            <div class="text-4xl mb-4">🛠️</div>
+            <h3 class="text-xl font-bold mb-2">Build Tools</h3>
+            <p class="text-gray-600 dark:text-gray-400">
+              Webpack, Babel, NPM, CI/CD
+            </p>
+          </div>
+          
+          <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+            <div class="text-4xl mb-4">🧪</div>
+            <h3 class="text-xl font-bold mb-2">Testing</h3>
+            <p class="text-gray-600 dark:text-gray-400">
+              Jest, React Testing Library, Best Practices
+            </p>
+          </div>
+          
+          <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+            <div class="text-4xl mb-4">📘</div>
+            <h3 class="text-xl font-bold mb-2">JavaScript ES6+</h3>
+            <p class="text-gray-600 dark:text-gray-400">
+              Async/Await, Modules, Closures, Prototypes
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Start Section -->
+    <section class="py-16 px-4 bg-gray-50 dark:bg-gray-800">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold text-center mb-8">Bắt đầu nhanh</h2>
+        <div class="space-y-4">
+          <a
+            href="/interview-prep/quick-reference/phong-van-nhanh"
+            class="block p-6 bg-white dark:bg-gray-900 rounded-xl shadow-lg hover:shadow-xl transition-all border-l-4 border-blue-600"
+          >
+            <h3 class="text-xl font-bold mb-2">📋 Quick Reference</h3>
+            <p class="text-gray-600 dark:text-gray-400">
+              Tóm tắt nhanh các điểm quan trọng cho phỏng vấn ngày mai
+            </p>
+          </a>
+          
+          <a
+            href="/interview-prep/detailed-questions"
+            class="block p-6 bg-white dark:bg-gray-900 rounded-xl shadow-lg hover:shadow-xl transition-all border-l-4 border-purple-600"
+          >
+            <h3 class="text-xl font-bold mb-2">📚 Câu hỏi chi tiết</h3>
+            <p class="text-gray-600 dark:text-gray-400">
+              80+ câu hỏi với diagrams và code examples từ cơ bản đến nâng cao
+            </p>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-gray-900 text-gray-300 py-8 px-4 text-center">
+    <p>Made with ❤️ for React developers</p>
+  </footer>
+</MainLayout>
