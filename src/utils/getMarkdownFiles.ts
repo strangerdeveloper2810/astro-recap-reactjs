@@ -32,7 +32,7 @@ function getMarkdownFilesRecursive(basePath: string, currentPath: string): Markd
       const title = extractTitle(content) || entry.name.replace('.md', '');
       // Calculate relative path from the ORIGINAL basePath, not current directory
       const relativePath = path.relative(basePath, fullPath);
-      const slug = relativePath.replace('.md', '').replace(/\\/g, '/');
+      const slug = relativePath.replace('.md', '').replace(/\\/g, '/').toLowerCase();
 
       files.push({
         slug,
@@ -66,7 +66,7 @@ export function getMarkdownFile(basePath: string, slug: string): MarkdownFile | 
       if (stats.isFile() && fullPath.endsWith('.md')) {
         const content = fs.readFileSync(fullPath, 'utf-8');
         const relativePath = path.relative(basePath, fullPath);
-        const fileSlug = relativePath.replace('.md', '').replace(/\\/g, '/');
+        const fileSlug = relativePath.replace('.md', '').replace(/\\/g, '/').toLowerCase();
         const title = extractTitle(content) || fileSlug;
 
         return {
@@ -81,7 +81,7 @@ export function getMarkdownFile(basePath: string, slug: string): MarkdownFile | 
         if (fs.existsSync(indexPath)) {
           const content = fs.readFileSync(indexPath, 'utf-8');
           const relativePath = path.relative(basePath, indexPath);
-          const fileSlug = relativePath.replace('.md', '').replace(/\\/g, '/');
+          const fileSlug = relativePath.replace('.md', '').replace(/\\/g, '/').toLowerCase();
           const title = extractTitle(content) || fileSlug;
 
           return {
