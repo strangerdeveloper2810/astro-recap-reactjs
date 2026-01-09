@@ -1,0 +1,24 @@
+{
+  "name": "recap-js",
+  "version": "1.0.0",
+  "description": "JavaScript review guide for Middle/Senior Frontend positions",
+  "main": "index.js",
+  "scripts": {
+    "start": "echo 'Open README.md to start reviewing JavaScript concepts'",
+    "test": "echo 'No tests specified'"
+  },
+  "keywords": [
+    "javascript",
+    "frontend",
+    "interview",
+    "review",
+    "es6",
+    "event-loop",
+    "promise",
+    "async-await"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {},
+  "dependencies": {}
+}

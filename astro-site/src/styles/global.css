@@ -1,0 +1,275 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Refined color palette - muted, sophisticated */
+    --color-primary: 86 100 89;      /* Muted sage */
+    --color-accent: 176 137 104;     /* Warm terracotta */
+    --color-text: 36 33 30;          /* Deep charcoal */
+    --color-text-muted: 107 101 95;  /* Warm gray */
+    --color-bg: 250 248 246;         /* Warm off-white */
+    --color-bg-secondary: 243 240 236; /* Light warm gray */
+    --color-border: 226 221 214;     /* Soft beige */
+
+    /* Dark mode - warm, comfortable */
+    --color-dark-bg: 26 25 23;
+    --color-dark-bg-secondary: 38 36 33;
+    --color-dark-text: 245 242 238;
+    --color-dark-text-muted: 168 162 155;
+    --color-dark-border: 54 51 48;
+  }
+
+  html {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-feature-settings: 'ss03', 'cv02', 'cv11';
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-[rgb(var(--color-bg))] text-[rgb(var(--color-text))];
+    @apply dark:bg-[rgb(var(--color-dark-bg))] dark:text-[rgb(var(--color-dark-text))];
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-optical-sizing: auto;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+  }
+}
+
+@layer components {
+  /* Custom scrollbar - refined */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-[rgb(var(--color-bg-secondary))] dark:bg-[rgb(var(--color-dark-bg-secondary))];
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-[rgb(var(--color-primary)/0.3)] dark:bg-[rgb(var(--color-dark-border))];
+    @apply rounded-full;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-[rgb(var(--color-primary)/0.5)] dark:bg-[rgb(var(--color-dark-text-muted)/0.3)];
+  }
+
+  /* Touch targets */
+  .touch-target {
+    @apply min-h-[44px] min-w-[44px];
+  }
+
+  /* Card component with refined styling */
+  .card {
+    @apply bg-white/60 dark:bg-[rgb(var(--color-dark-bg-secondary))];
+    @apply border border-[rgb(var(--color-border))] dark:border-[rgb(var(--color-dark-border))];
+    @apply backdrop-blur-sm;
+    @apply rounded-xl;
+    @apply shadow-sm hover:shadow-md;
+    @apply transition-all duration-300;
+  }
+
+  /* Button variants */
+  .btn-primary {
+    @apply bg-[rgb(var(--color-primary))] text-white;
+    @apply px-6 py-3 rounded-lg;
+    @apply font-medium;
+    @apply hover:bg-[rgb(var(--color-primary)/0.9)];
+    @apply transition-all duration-200;
+    @apply shadow-sm hover:shadow;
+  }
+
+  .btn-ghost {
+    @apply bg-transparent;
+    @apply px-4 py-2 rounded-lg;
+    @apply hover:bg-[rgb(var(--color-bg-secondary))] dark:hover:bg-[rgb(var(--color-dark-bg-secondary))];
+    @apply transition-all duration-200;
+  }
+}
+
+/* Mermaid diagrams - refined */
+.mermaid {
+  @apply my-12 flex justify-center;
+  background: transparent !important;
+}
+
+/* Markdown content styles - editorial */
+.prose {
+  @apply max-w-none;
+  @apply text-[rgb(var(--color-text))] dark:text-[rgb(var(--color-dark-text))];
+}
+
+.prose h1 {
+  @apply text-4xl md:text-5xl;
+  @apply font-semibold;
+  @apply mb-8 mt-12;
+  @apply text-[rgb(var(--color-text))] dark:text-[rgb(var(--color-dark-text))];
+  @apply leading-tight;
+}
+
+.prose h2 {
+  @apply text-3xl md:text-4xl;
+  @apply font-semibold;
+  @apply mb-6 mt-10;
+  @apply text-[rgb(var(--color-text))] dark:text-[rgb(var(--color-dark-text))];
+  @apply leading-snug;
+  @apply border-b border-[rgb(var(--color-border))] dark:border-[rgb(var(--color-dark-border))];
+  @apply pb-3;
+}
+
+.prose h3 {
+  @apply text-2xl md:text-3xl;
+  @apply font-semibold;
+  @apply mb-4 mt-8;
+  @apply text-[rgb(var(--color-text))] dark:text-[rgb(var(--color-dark-text))];
+}
+
+.prose h4 {
+  @apply text-xl md:text-2xl;
+  @apply font-medium;
+  @apply mb-3 mt-6;
+  @apply text-[rgb(var(--color-text-muted))] dark:text-[rgb(var(--color-dark-text-muted))];
+}
+
+.prose p {
+  @apply text-lg leading-relaxed;
+  @apply mb-6;
+  @apply text-[rgb(var(--color-text))] dark:text-[rgb(var(--color-dark-text))];
+}
+
+.prose a {
+  @apply text-[rgb(var(--color-accent))];
+  @apply underline decoration-2 decoration-[rgb(var(--color-accent)/0.3)];
+  @apply hover:decoration-[rgb(var(--color-accent))];
+  @apply transition-all duration-200;
+}
+
+.prose strong {
+  @apply font-semibold;
+  @apply text-[rgb(var(--color-text))] dark:text-[rgb(var(--color-dark-text))];
+}
+
+.prose ul, .prose ol {
+  @apply my-6 ml-6;
+  @apply text-lg leading-relaxed;
+}
+
+.prose li {
+  @apply mb-3;
+}
+
+.prose pre {
+  @apply bg-[rgb(var(--color-dark-bg))] dark:bg-[rgb(var(--color-dark-bg-secondary))];
+  @apply text-[rgb(var(--color-dark-text))];
+  @apply rounded-xl p-6;
+  @apply overflow-x-auto;
+  @apply my-8;
+  @apply border border-[rgb(var(--color-dark-border))];
+  @apply shadow-lg;
+  font-family: 'Fira Code', 'JetBrains Mono', 'Monaco', monospace;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.prose code {
+  @apply bg-[rgb(var(--color-bg-secondary))] dark:bg-[rgb(var(--color-dark-bg-secondary))];
+  @apply text-[rgb(var(--color-accent))];
+  @apply px-2 py-1 rounded-md;
+  @apply text-sm;
+  @apply border border-[rgb(var(--color-border))] dark:border-[rgb(var(--color-dark-border))];
+  font-family: 'Fira Code', monospace;
+}
+
+.prose pre code {
+  @apply bg-transparent p-0 border-0;
+  @apply text-[rgb(var(--color-dark-text))];
+}
+
+.prose blockquote {
+  @apply border-l-4 border-[rgb(var(--color-primary))];
+  @apply bg-[rgb(var(--color-bg-secondary))] dark:bg-[rgb(var(--color-dark-bg-secondary))];
+  @apply pl-6 pr-4 py-4;
+  @apply my-8;
+  @apply italic;
+  @apply rounded-r-lg;
+}
+
+.prose table {
+  @apply w-full my-8;
+  @apply border-collapse;
+}
+
+.prose th {
+  @apply bg-[rgb(var(--color-bg-secondary))] dark:bg-[rgb(var(--color-dark-bg-secondary))];
+  @apply px-4 py-3;
+  @apply text-left font-semibold;
+  @apply border-b-2 border-[rgb(var(--color-primary))];
+}
+
+.prose td {
+  @apply px-4 py-3;
+  @apply border-b border-[rgb(var(--color-border))] dark:border-[rgb(var(--color-dark-border))];
+}
+
+.prose img {
+  @apply rounded-xl shadow-xl;
+  @apply my-8;
+}
+
+.prose h1, .prose h2, .prose h3 {
+  @apply scroll-mt-24;
+}
+
+/* Smooth transitions - refined */
+* {
+  @apply transition-colors duration-300 ease-out;
+}
+
+/* Subtle page grain texture for depth */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.015;
+  z-index: 9999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='3.5' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Fade-in animation for content */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Selection styling */
+::selection {
+  @apply bg-[rgb(var(--color-primary)/0.3)] text-[rgb(var(--color-text))];
+}
+
+::-moz-selection {
+  @apply bg-[rgb(var(--color-primary)/0.3)] text-[rgb(var(--color-text))];
+}

@@ -1,0 +1,127 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import { getMarkdownFiles } from '../../utils/getMarkdownFiles';
+import path from 'path';
+
+const contentDir = path.join(process.cwd(), 'src', 'markdown-content');
+const basePath = path.join(contentDir, 'interview-prep/bilingual-questions');
+const files = getMarkdownFiles(basePath);
+
+// Sort files by number prefix
+const sortedFiles = files.sort((a, b) => {
+  const numA = parseInt(a.slug.split('-')[0]) || 0;
+  const numB = parseInt(b.slug.split('-')[0]) || 0;
+  return numA - numB;
+});
+
+// Category mapping
+const categories = [
+  { prefix: '01', name: 'HTML', icon: '🌐', color: 'orange' },
+  { prefix: '02', name: 'CSS', icon: '🎨', color: 'blue' },
+  { prefix: '03', name: 'JavaScript', icon: '⚡', color: 'yellow' },
+  { prefix: '04', name: 'TypeScript', icon: '📘', color: 'blue' },
+  { prefix: '05', name: 'React', icon: '⚛️', color: 'cyan' },
+  { prefix: '06', name: 'Next.js Page Router', icon: '📄', color: 'gray' },
+  { prefix: '07', name: 'Next.js App Router', icon: '🚀', color: 'purple' },
+  { prefix: '08', name: 'Fintech & Real-world', icon: '💰', color: 'green' },
+  { prefix: '09', name: 'Self Introduction', icon: '👤', color: 'pink' },
+];
+
+const getCategory = (slug: string) => {
+  const prefix = slug.split('-')[0];
+  return categories.find(c => c.prefix === prefix) || { name: 'Other', icon: '📁', color: 'gray' };
+};
+---
+
+<MainLayout title="Bilingual Interview Questions">
+  <Navbar />
+
+  <div class="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <header class="mb-12 text-center">
+        <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          🌍 Bilingual Interview Questions
+        </h1>
+        <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          Comprehensive frontend interview questions in English & Vietnamese.
+          Perfect for Fintech & Trading platform interviews.
+        </p>
+        <div class="mt-4 flex flex-wrap justify-center gap-2">
+          <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm">
+            350+ Questions
+          </span>
+          <span class="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded-full text-sm">
+            Song ngữ EN/VI
+          </span>
+          <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 rounded-full text-sm">
+            Code Examples
+          </span>
+        </div>
+      </header>
+
+      <!-- Categories Grid -->
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {sortedFiles.map((file) => {
+          const category = getCategory(file.slug);
+          return (
+            <a
+              href={`/interview-prep/bilingual-questions/${file.slug}`}
+              class="group block bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-400"
+            >
+              <div class="p-6">
+                <div class="flex items-center gap-3 mb-3">
+                  <span class="text-3xl">{category.icon}</span>
+                  <h3 class="text-xl font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                    {category.name}
+                  </h3>
+                </div>
+                <p class="text-gray-600 dark:text-gray-400 text-sm">
+                  {file.title}
+                </p>
+                <div class="mt-4 flex items-center text-blue-600 dark:text-blue-400 text-sm font-medium">
+                  <span>View questions</span>
+                  <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                  </svg>
+                </div>
+              </div>
+            </a>
+          );
+        })}
+      </div>
+
+      <!-- Info Section -->
+      <div class="mt-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl p-8 text-white">
+        <h2 class="text-2xl font-bold mb-4">Tips for Interview</h2>
+        <ul class="grid md:grid-cols-2 gap-4">
+          <li class="flex items-start gap-2">
+            <span class="text-xl">✅</span>
+            <span>Practice explaining concepts in both languages</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-xl">✅</span>
+            <span>Focus on code examples and real-world scenarios</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-xl">✅</span>
+            <span>Review Fintech-specific questions for banking/trading roles</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-xl">✅</span>
+            <span>Prepare your self-introduction in multiple lengths</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="mt-8">
+        <a
+          href="/interview-prep"
+          class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline"
+        >
+          ← Back to Interview Prep
+        </a>
+      </div>
+    </main>
+  </div>
+</MainLayout>

@@ -1,0 +1,48 @@
+---
+interface Props {
+  items: Array<{
+    title: string;
+    href: string;
+    children?: Array<{ title: string; href: string }>;
+  }>;
+  currentPath: string;
+}
+
+const { items, currentPath } = Astro.props;
+---
+
+<aside class="hidden lg:block w-64 h-[calc(100vh-4rem)] overflow-y-auto custom-scrollbar sticky top-16 border-r border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900">
+  <nav class="p-4 space-y-2">
+    {items.map((item) => (
+      <div>
+        <a
+          href={item.href}
+          class={`block px-4 py-2 rounded-lg touch-target ${
+            currentPath === item.href || currentPath.startsWith(item.href + '/')
+              ? 'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 font-medium'
+              : 'hover:bg-gray-100 dark:hover:bg-gray-800'
+          }`}
+        >
+          {item.title}
+        </a>
+        {item.children && (
+          <div class="ml-4 mt-1 space-y-1">
+            {item.children.map((child) => (
+              <a
+                href={child.href}
+                class={`block px-4 py-2 rounded-lg text-sm touch-target ${
+                  currentPath === child.href
+                    ? 'bg-blue-50 dark:bg-blue-950 text-blue-600 dark:text-blue-400 font-medium'
+                    : 'hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-400'
+                }`}
+              >
+                {child.title}
+              </a>
+            ))}
+          </div>
+        )}
+      </div>
+    ))}
+  </nav>
+</aside>
+
