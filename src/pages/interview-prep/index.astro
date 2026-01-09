@@ -1,0 +1,81 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import { getMarkdownFiles } from '../../utils/getMarkdownFiles';
+import path from 'path';
+
+// Get base directory
+const getBaseDir = () => {
+  const currentFileUrl = import.meta.url;
+  const currentFilePath = new URL(currentFileUrl).pathname;
+  const astroSiteDir = path.dirname(currentFilePath).replace('/src/pages/interview-prep', '');
+  return path.join(astroSiteDir, '..');
+};
+
+const basePath = path.join(getBaseDir(), 'interview-prep');
+const files = getMarkdownFiles(basePath);
+
+const quickRef = files.filter(f => f.slug.includes('quick-reference'));
+const detailed = files.filter(f => f.slug.includes('detailed-questions'));
+---
+
+<MainLayout title="Interview Preparation">
+  <Navbar />
+  
+  <main class="min-h-screen py-12 px-4">
+    <div class="max-w-6xl mx-auto">
+      <h1 class="text-4xl font-bold mb-8 text-center">📚 Interview Preparation</h1>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Quick Reference -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+          <h2 class="text-2xl font-bold mb-4">⚡ Quick Reference</h2>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">
+            Tóm tắt nhanh cho phỏng vấn ngày mai
+          </p>
+          <ul class="space-y-2">
+            {quickRef.map((file) => (
+              <li>
+                <a
+                  href={`/interview-prep/${file.slug}`}
+                  class="block p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 touch-target"
+                >
+                  {file.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+        
+        <!-- Detailed Questions -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+          <h2 class="text-2xl font-bold mb-4">📖 Detailed Questions</h2>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">
+            Câu hỏi chi tiết với diagrams
+          </p>
+          <ul class="space-y-2">
+            {detailed.slice(0, 5).map((file) => (
+              <li>
+                <a
+                  href={`/interview-prep/${file.slug}`}
+                  class="block p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 touch-target"
+                >
+                  {file.title}
+                </a>
+              </li>
+            ))}
+            <li>
+              <a
+                href="/interview-prep/detailed-questions"
+                class="block p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 touch-target text-blue-600 dark:text-blue-400 font-medium"
+              >
+                Xem tất cả →
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+</MainLayout>
+
