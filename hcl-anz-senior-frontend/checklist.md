@@ -3,20 +3,59 @@
 > **Interview Date**: Thứ 5 tuần sau
 > **Format**: 2 tiếng, Full English, 1 Technical Round
 > **Position**: Senior Frontend Engineer
+> **Platform**: CodeSandbox (tạo account trước!)
+
+---
+
+## Interview Format (từ JD)
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  PHẦN 1: CODING trên CodeSandbox                            │
+│  - Đọc requirements (dài) → Implement React solution        │
+│  - Real-world problem (không phải pure algorithm)           │
+│  - Sau đó: Discuss solution + Follow-up questions           │
+├─────────────────────────────────────────────────────────────┤
+│  PHẦN 2: EXPERIENCE QUESTIONS                               │
+│  - Câu hỏi về kinh nghiệm làm việc                          │
+│  - Testing mindset, Design System, CI/CD, Ownership         │
+└─────────────────────────────────────────────────────────────┘
+```
+
+## JD Requirements Checklist
+
+| Criteria | Priority | Status |
+|----------|----------|--------|
+| 4+ years exp, 2+ years React/Next.js + TS | Must have | ⬜ |
+| Software fundamentals (testable, reusable code) | Must have | ⬜ |
+| **Testing mindset** | Must have | ⬜ |
+| **UI/Design System understanding** | Must have | ⬜ |
+| **Operation: CI/CD, monitoring, logging** | Must have | ⬜ |
+| Ownership mindset | Must have | ⬜ |
+| Accessibility (WCAG AA) | Nice to have | ⬜ |
 
 ---
 
 ## Progress Tracker
 
-| Day | Topic | Status |
-|-----|-------|--------|
-| Day 1 | React Fundamentals & Hooks | ⬜ |
-| Day 2 | Advanced React & Algorithms | ⬜ |
-| Day 3 | System Design Fundamentals | ⬜ |
-| Day 4 | System Design Practice + Next.js 14 | ⬜ |
-| Day 5 | Accessibility + Nx + gRPC | ⬜ |
-| Day 6 | Project Stories & Behavioral | ⬜ |
-| Day 7 | Overview & Mock Interview | ⬜ |
+| Day | Topic | Focus | Status | File |
+|-----|-------|-------|--------|------|
+| Day 1 | React + JS Fundamentals | Hooks, Closure, Event Loop | ⬜ | [day-1-react-fundamentals.md](day-1-react-fundamentals.md) |
+| Day 2 | Advanced React + TypeScript | Patterns, Generics, Types | ⬜ | [day-2-advanced-react-algorithms.md](day-2-advanced-react-algorithms.md) |
+| Day 3 | System Design Fundamentals | RADIO, State Management | ⬜ | [day-3-system-design-fundamentals.md](day-3-system-design-fundamentals.md) |
+| Day 4-5 | Design System + Testing | Components, RTL, MSW, Next.js | ⬜ | [day-4-5-system-design-technical.md](day-4-5-system-design-technical.md) |
+| Day 5+ | **Operation + CI/CD** | Monitoring, Logging, Incidents | ⬜ | [day-5-operations-cicd.md](day-5-operations-cicd.md) ⭐NEW |
+| Day 6 | Experience Questions | STAR stories, Ownership | ⬜ | [day-6-experience-questions.md](day-6-experience-questions.md) ⭐NEW |
+| Day 7 | Mock Interview | Full simulation | ⬜ | Use all materials |
+
+### Additional Resources
+| Resource | Purpose | File |
+|----------|---------|------|
+| CodeSandbox Practice | 3 real-world problems | [codesandbox-practice-problems.md](codesandbox-practice-problems.md) ⭐NEW |
+| Follow-up Questions | Post-coding discussion | [follow-up-questions.md](follow-up-questions.md) ⭐NEW |
+| **React + Algorithm Drills** | Luyện tư duy từ cơ bản đến nâng cao | [react-algorithm-drills.md](react-algorithm-drills.md) ⭐NEW |
+| **Design System Exercises** | Build components từ scratch | [design-system-exercises.md](design-system-exercises.md) ⭐NEW |
+| Interview Resources | Links & cheatsheets | [HCL-ANZ-Interview-Resources.md](HCL-ANZ-Interview-Resources.md) |
 
 **Legend**: ⬜ Not started | 🟡 In progress | ✅ Completed
 
@@ -111,29 +150,57 @@
 
 ---
 
-## Day 3: System Design Fundamentals
+## Day 3: React Coding Practice (CodeSandbox) ⭐ QUAN TRỌNG
 
-### RADIO Framework
-- [ ] R - Requirements (functional & non-functional)
-- [ ] A - Architecture (component diagram)
-- [ ] D - Data Model (state, API contracts)
-- [ ] I - Interface (component props, events)
-- [ ] O - Optimizations (performance, a11y, edge cases)
+> Format phỏng vấn: Đọc requirements → Implement → Discuss solution
 
-### Core Concepts
-- [ ] State Management strategies (local, server, global, URL)
-- [ ] Rendering Patterns (CSR, SSR, SSG, ISR)
-- [ ] API Communication (REST vs GraphQL, real-time options)
-- [ ] Error Handling (Error Boundary, API errors)
-- [ ] Security (XSS, CSRF, auth tokens)
+### Setup
+- [ ] Tạo account CodeSandbox: https://codesandbox.io/
+- [ ] Làm quen với editor, shortcuts
+- [ ] Test tạo React project mới
 
-### Practice Designs
-- [ ] Design Autocomplete (full RADIO walkthrough)
-- [ ] Design News Feed (full RADIO walkthrough)
+### Real-World Coding Problems (Practice)
+
+**Problem 1: Search & Filter List**
+- [ ] Fetch data từ API
+- [ ] Search by keyword (debounced)
+- [ ] Filter by category
+- [ ] Sort by different fields
+- [ ] Loading & Error states
+
+**Problem 2: Multi-step Form**
+- [ ] Wizard với 3-4 steps
+- [ ] Validation mỗi step
+- [ ] Navigate back/forward
+- [ ] Submit final data
+- [ ] Success/Error handling
+
+**Problem 3: Data Table**
+- [ ] Display paginated data
+- [ ] Sorting columns
+- [ ] Row selection (checkbox)
+- [ ] Bulk actions
+- [ ] Responsive design
+
+**Problem 4: Real-time Feature**
+- [ ] Counter với increment/decrement
+- [ ] Undo/Redo functionality
+- [ ] Persist to localStorage
+- [ ] Keyboard shortcuts
+
+### Coding Best Practices (để discuss)
+- [ ] Component structure (separation of concerns)
+- [ ] Custom hooks extraction
+- [ ] Error handling patterns
+- [ ] TypeScript types
+- [ ] Performance considerations
+- [ ] Accessibility basics
 
 ### English Practice
-- [ ] Can explain RADIO framework fluently
-- [ ] Can draw architecture diagram while talking
+- [ ] Explain your solution approach
+- [ ] Discuss trade-offs
+- [ ] Answer "Why did you choose this approach?"
+- [ ] Handle follow-up questions
 
 ---
 
@@ -190,6 +257,33 @@
 
 ---
 
+## Day 5+: Operations & CI/CD ⭐ NEW (Must Have!)
+
+> **File chi tiết**: [day-5-operations-cicd.md](day-5-operations-cicd.md)
+
+### CI/CD
+- [ ] Explain CI/CD pipeline (build, test, deploy stages)
+- [ ] Know GitHub Actions / CircleCI basics
+- [ ] Preview deployments concept
+- [ ] Feature flags for safe rollouts
+
+### Monitoring
+- [ ] Error tracking (Sentry setup, release tracking)
+- [ ] Core Web Vitals (LCP, FID/INP, CLS targets)
+- [ ] Performance budgets (Lighthouse CI)
+
+### Incident Handling
+- [ ] STAR story for production incident
+- [ ] Severity levels understanding
+- [ ] Post-mortem process
+
+### English Practice
+- [ ] Record: "Describe your CI/CD experience"
+- [ ] Record: "How do you monitor frontend apps?"
+- [ ] Record: "Tell me about a production incident"
+
+---
+
 ## Day 5: Accessibility + Nx + gRPC
 
 ### WCAG AA Requirements
@@ -226,6 +320,51 @@
 - [ ] == vs ===
 - [ ] Web Vitals (LCP, FID, CLS)
 - [ ] State management in large apps
+
+---
+
+## CodeSandbox Practice ⭐ NEW (QUAN TRỌNG!)
+
+> **File chi tiết**: [codesandbox-practice-problems.md](codesandbox-practice-problems.md)
+
+### Setup
+- [ ] Create CodeSandbox account: https://codesandbox.io/
+- [ ] Create React + TypeScript project
+- [ ] Làm quen với editor, shortcuts, file navigation
+
+### Practice Problems (30-45 min mỗi bài)
+- [ ] **Problem 1**: User Search with Filters
+- [ ] **Problem 2**: Multi-Step Checkout Form
+- [ ] **Problem 3**: Real-time Notification Center
+
+### Post-Coding Discussion
+- [ ] Review [follow-up-questions.md](follow-up-questions.md)
+- [ ] Practice explaining your approach out loud
+- [ ] Know trade-offs of your decisions
+- [ ] Prepare improvements you would make with more time
+
+---
+
+## Day 6: Experience Questions ⭐ NEW
+
+> **File chi tiết**: [day-6-experience-questions.md](day-6-experience-questions.md)
+
+### STAR Stories (chuẩn bị 4-5 stories)
+- [ ] Architecture decision story (Monorepo, RPC abstraction)
+- [ ] Performance optimization story (30K records, Web Worker)
+- [ ] Cross-geography collaboration story (AU/VN timezone)
+- [ ] Mentoring junior developers story
+- [ ] Production incident story (với CI/CD section)
+
+### Common Questions Practice
+- [ ] "Tell me about yourself" (2 minutes)
+- [ ] "Why are you interested in this role?"
+- [ ] "Describe a challenging project"
+- [ ] "How do you handle technical disagreements?"
+- [ ] "Tell me about a time you went beyond your responsibilities"
+
+### Questions to Ask Interviewer
+- [ ] Prepare 3 questions about role/team/technology
 
 ---
 
